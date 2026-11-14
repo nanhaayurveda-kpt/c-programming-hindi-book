@@ -1,62 +1,12 @@
 # भूमिका
 
-<!-- Beej's guide to C
-# vim: ts=4:sw=4:nosi:et:tw=72
--->
-
-<!-- No hyphenation -->
-
-[nh[scalbn]]
-[nh[scalbnf]]
-[nh[scalbnl]]
-[nh[scalbln]]
-[nh[scalblnf]]
-[nh[scalblnl]]
-
-<!-- Can't do things that aren't letters
-[nh[atan2]]
-[nh[atan2f]]
-[nh[atan2l]]
--->
-
-[nh[lrint]]
-[nh[lrintf]]
-[nh[lrintl]]
-[nh[llrint]]
-[nh[llrintf]]
-[nh[llrintl]]
-[nh[lround]]
-[nh[lroundf]]
-[nh[lroundl]]
-[nh[llround]]
-[nh[llroundf]]
-[nh[llroundl]]
-
-<!-- Index see alsos -->
-
-[is[String==>see `char *`]]
-[is[New line==>see `\n` newline]]
-[is[Ternary operator==>see `?:` ternary operator]]
-[is[Addition operator==>see `+` addition operator]]
-[is[Subtraction operator==>see `-` subtraction operator]]
-[is[Multiplication operator==>see `*` multiplication operator]]
-[is[Division operator==>see `/` division operator]]
-[is[Modulus operator==>see `%` modulus operator]]
-[is[Boolean NOT==>see `!` operator]]
-[is[Boolean AND==>see `&&` operator]]
-[is[Boolean OR==>see `||` operator]]
-[is[Bell==>see `\a` operator]]
-[is[Tab (is better)==>see `\t` operator]]
-[is[Carriage return==>see `\r` operator]]
-[is[Hexadecimal==>see `0x` hexadecimal]]
-
 > _C कोई बड़ी भाषा नहीं है, और किसी बड़ी किताब से उसका भला भी नहीं होता।_
 >
 > --Brian W. Kernighan, Dennis M. Ritchie
 
 दोस्तो, यहाँ शब्द बर्बाद करने का कोई फ़ायदा नहीं, चलिए सीधे C कोड में कूद पड़ते हैं:
 
-```{.c}
+```c
 E((ck?main((z?(stat(M,&t)?P+=a+'{'?0:3:
 execv(M,k),a=G,i=P,y=G&255,
 sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
@@ -66,7 +16,7 @@ sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
 
 अरे, यह क्या? आप कह रहे हैं कि C प्रोग्रामिंग भाषा वाली यह पूरी बात अभी भी साफ़ नहीं हुई?
 
-तो सच कहूँ, तो मुझे ख़ुद भी पक्का नहीं पता कि ऊपर वाला कोड करता क्या है। यह 2001 की [fl[International Obfuscated C Code Contest|https://www.ioccc.org/]][i[International Obfuscated C Code Contest]] की एक प्रविष्टि का टुकड़ा है। यह एक ग़ज़ब की प्रतियोगिता है, जिसमें प्रतिभागी ऐसा C कोड लिखने की कोशिश करते हैं जो ज़्यादा से ज़्यादा अपठनीय हो, और नतीजे अक्सर चौंकाने वाले निकलते हैं।
+तो सच कहूँ, तो मुझे ख़ुद भी पक्का नहीं पता कि ऊपर वाला कोड करता क्या है। यह 2001 की [International Obfuscated C Code Contest](https://www.ioccc.org/) की एक प्रविष्टि का टुकड़ा है। यह एक ग़ज़ब की प्रतियोगिता है, जिसमें प्रतिभागी ऐसा C कोड लिखने की कोशिश करते हैं जो ज़्यादा से ज़्यादा अपठनीय हो, और नतीजे अक्सर चौंकाने वाले निकलते हैं।
 
 बुरी ख़बर यह है कि अगर आप इस पूरे मामले में नए हैं, तो आपको दिखने वाला हर C कोड शायद उलझा हुआ ही लगेगा! अच्छी ख़बर यह है कि यह हाल ज़्यादा दिन नहीं रहेगा।
 
@@ -79,12 +29,8 @@ sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
 ## पाठक वर्ग
 
 यह गाइड मानकर चलती है कि आपके पास किसी दूसरी भाषा, जैसे
-[flw[Python|Python_(programming_language)]],
-[flw[JavaScript|JavaScript]], [flw[Java|Java_(programming_language)]],
-[flw[Rust|Rust_(programming_language)]],
-[flw[Go|Go_(programming_language)]],
-[flw[Swift|Swift_(programming_language)]] वगैरह से, प्रोग्रामिंग का कुछ ज्ञान पहले से है।
-([flw[Objective-C|Objective-C]] के डेवलपरों के लिए तो यह ख़ास तौर पर आसान रहेगा!)
+Python, JavaScript, Java, Rust, Go, Swift वगैरह से, प्रोग्रामिंग का कुछ ज्ञान पहले से है।
+(Objective-C के डेवलपरों के लिए तो यह ख़ास तौर पर आसान रहेगा!)
 
 हम मानकर चलेंगे कि आप जानते हैं कि वेरिएबल क्या होते हैं, लूप क्या करते हैं, फ़ंक्शन कैसे काम करते हैं, और इसी तरह की बाक़ी बातें।
 
@@ -94,7 +40,7 @@ sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
 
 यह गाइड दो खंडों में है, और यह पहला खंड है: ट्यूटोरियल खंड!
 
-दूसरा खंड [fl[लाइब्रेरी रेफ़रेंस|https://beej.us/guide/bgclr/]] है, और वह ट्यूटोरियल से कहीं ज़्यादा रेफ़रेंस है।
+दूसरा खंड [लाइब्रेरी रेफ़रेंस](https://beej.us/guide/bgclr/) है, और वह ट्यूटोरियल से कहीं ज़्यादा रेफ़रेंस है।
 
 अगर आप नए हैं, तो आम तौर पर ट्यूटोरियल वाला हिस्सा क्रम से पढ़ें। जैसे-जैसे आप आगे के अध्यायों में बढ़ेंगे, क्रम से पढ़ना उतना ज़रूरी नहीं रह जाएगा।
 
@@ -104,24 +50,23 @@ sprintf(Q,y/'@'-3?A(*L(V(%d+%d)+%d,0)
 
 ## प्लेटफ़ॉर्म और कंपाइलर
 
-मैं सीधे-सादे, पुराने ढर्रे के [flw[ISO-स्टैंडर्ड C|ANSI_C]] पर टिके रहने की कोशिश करूँगा। मतलब, ज़्यादातर। कहीं-कहीं मैं बहककर [flw[POSIX|POSIX]] या ऐसी ही किसी चीज़ की बात करने लग सकता हूँ, पर देखेंगे।
+मैं सीधे-सादे, पुराने ढर्रे के ISO-स्टैंडर्ड C पर टिके रहने की कोशिश करूँगा। मतलब, ज़्यादातर। कहीं-कहीं मैं बहककर POSIX या ऐसी ही किसी चीज़ की बात करने लग सकता हूँ, पर देखेंगे।
 
 **Unix** यूज़र (जैसे Linux, BSD आदि) कमांड लाइन से `cc` या `gcc` चलाकर देखें--हो सकता है आपके पास कंपाइलर पहले से इंस्टॉल हो। अगर नहीं है, तो अपनी डिस्ट्रीब्यूशन में `gcc` या `clang` इंस्टॉल करने का तरीक़ा खोजें।
 
-**Windows** यूज़र [fl[Visual Studio
-Community|https://visualstudio.microsoft.com/vs/community/]] देखें। या अगर आप Unix जैसा अनुभव चाहते हैं (मेरी सलाह यही है!), तो
-[fl[WSL|https://docs.microsoft.com/en-us/windows/wsl/install-win10]] और
+**Windows** यूज़र [Visual Studio Community](https://visualstudio.microsoft.com/vs/community/) देखें। या अगर आप Unix जैसा अनुभव चाहते हैं (मेरी सलाह यही है!), तो
+[WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) और
 `gcc` इंस्टॉल करें।
 
 **Mac** यूज़र
-[fl[XCode|https://developer.apple.com/xcode/]] इंस्टॉल करना चाहेंगे, और ख़ासकर उसके कमांड लाइन टूल्स।
+[XCode](https://developer.apple.com/xcode/) इंस्टॉल करना चाहेंगे, और ख़ासकर उसके कमांड लाइन टूल्स।
 
 बाज़ार में कंपाइलर बहुत हैं, और लगभग सभी इस किताब के लिए चलेंगे। C++ कंपाइलर भी बहुत-सा (पर सारा नहीं!) C कोड कंपाइल कर देगा। फिर भी हो सके तो असली C कंपाइलर ही इस्तेमाल करें।
 
 ## आधिकारिक होमपेज
 
 इस दस्तावेज़ का आधिकारिक पता
-[fl[https://beej.us/guide/bgc/|https://beej.us/guide/bgc/]] है। हो सकता है आगे चलकर यह बदल जाए, पर ज़्यादा संभावना यह है कि बाक़ी सभी गाइडें Chico State के कंप्यूटरों से हटाकर कहीं और ले जाई जाएँगी।
+[https://beej.us/guide/bgc/](https://beej.us/guide/bgc/) है। हो सकता है आगे चलकर यह बदल जाए, पर ज़्यादा संभावना यह है कि बाक़ी सभी गाइडें Chico State के कंप्यूटरों से हटाकर कहीं और ले जाई जाएँगी।
 
 ## ईमेल नीति
 
@@ -174,9 +119,9 @@ Beej's Guide to C का कॉपीराइट © 2021 Brian "Beej Jorgensen"
 बहुत-से लोगों ने इस सफ़र में मेरी मदद की है, और मैं उन सबका आभार मानना चाहता हूँ जिन्होंने इस किताब को संभव बनाया।
 
 - इंटरनेट पर वे सभी लोग जिन्होंने किसी न किसी रूप में अपना ज्ञान बाँटने का फ़ैसला किया। शिक्षाप्रद जानकारी का यही मुफ़्त बँटना इंटरनेट को वह शानदार जगह बनाता है जो वह है।
-- [fl[cppreference.com|https://en.cppreference.com/]] के वे स्वयंसेवक जो स्पेसिफ़िकेशन से असल दुनिया तक पहुँचाने वाला पुल बनाते हैं।
-- [fl[comp.lang.c|https://groups.google.com/g/comp.lang.c]] और
-  [fl[r/C_Programming|https://www.reddit.com/r/C_Programming/]] के वे मददगार और जानकार लोग जिन्होंने भाषा के कठिन हिस्सों में मुझे पार लगाया।
+- [cppreference.com](https://en.cppreference.com/) के वे स्वयंसेवक जो स्पेसिफ़िकेशन से असल दुनिया तक पहुँचाने वाला पुल बनाते हैं।
+- [comp.lang.c](https://groups.google.com/g/comp.lang.c) और
+  [r/C_Programming](https://www.reddit.com/r/C_Programming/) के वे मददगार और जानकार लोग जिन्होंने भाषा के कठिन हिस्सों में मुझे पार लगाया।
 - वे सभी जिन्होंने भ्रामक निर्देशों से लेकर टाइपो तक, हर चीज़ पर सुधार और पुल-रिक्वेस्ट भेजे।
 
 धन्यवाद! ♥
